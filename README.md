@@ -16,7 +16,7 @@ This is a Telegram bot that uses:
 
 ### How to use
 
-1. `git clone https://github.com/RafalWilinski/telegram-chatgpt-concierge-bot`
+1. `git clone[https://github.com/ayushi15092002/business_validator_telegram_bot]`
 3. `Make a copy of .env-example` and it rename it as '.env' and fill the following:
 
 ```
