@@ -9,6 +9,8 @@ import { Telegraf } from "telegraf";
 // Config
 import { initAiConfig } from "./handlers/ai-config";
 import { initOpenAI } from "./providers/openai";
+import config from "./config";
+
 
 const telegramToken = process.env.TELEGRAM_TOKEN!;
 // Ready timestamp of the bot
@@ -27,6 +29,14 @@ bot.help((ctx) => {
 });
 
 
+//pre prompt
+if(config.prePrompt != null && config.prePrompt.trim() != ""){
+  const response = await handleIncomingMessage(config.prePrompt.toString());
+  console.log("response preprompt  "+ response);
+}
+
+
+
 bot.on("message", async (ctx) => {
   const text = (ctx.message as any).text;
 
@@ -43,29 +53,6 @@ bot.on("message", async (ctx) => {
     const response = await handleIncomingMessage(text);
     console.log("response "+ response);
     await ctx.reply(response);
-
-    // if(response.toString() == "Agent stopped due to max iterations."){
-    //   try{
-    //     const response = await handleIncomingMessage(text);
-    //     await ctx.reply(response);
-
-    //   }catch(error){
-
-    //     console.log(error);
-
-    //     const message = JSON.stringify(
-    //       (error as any)?.response?.data?.error ?? "Unable to extract error"
-    //     );
-
-    //     console.log({ message });
-
-    //     await ctx.reply(
-    //       "Whoops! There was an error while talking to OpenAI. Error: " + message
-    //     );
-    //   }
-    // }else{
-    //   await ctx.reply(response);
-    // }
 
   } catch (error) {
     console.log(error);

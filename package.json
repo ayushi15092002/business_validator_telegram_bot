@@ -16,6 +16,7 @@
 		"dotenv": "^16.0.3",
 		"fetch-blob": "^3.2.0",
 		"ffmpeg": "^0.0.4",
+		"googlethis": "^1.7.1",
 		"langchain": "^0.0.62",
 		"openai": "^3.1.0",
 		"picocolors": "^1.0.0",
